@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" , class="h-100">
+
+<head>
+    <!-- Refresh on change -->
+    <script type="text/javascript" src="http://livejs.com/live.js"></script>
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" type="text/css" href="index.css">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+    <nav class="navbar navbar-dark bg-dark" style="margin-bottom: 100px;">
+        <a class="navbar-brand" href="#">Space Engineers Thruster Requirement Calculator</a>
+    </nav>
+
+    <main role="main" class="flex-shrink-0">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Ship Specifications</h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Ship Weight (kg)</span>
+                                </div>
+                                <input id="weightInputVal" value="1" min="0" type="number" aria-label="ship-weight" class="form-control">
+                            </div>
+
+                            <div class="input-group" id="shipSizeInputGroup">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Ship Size</span>
+                                </div>
+                                <select class="custom-select float-right" id="shipSizeSelect">
+                                    <!-- <option selected>Small Ship<option> -->
+                                    <option value="smallShip" selected>Small Ship</option>
+                                    <option value="largeShip">Large Ship</option>
+                                    <!-- <option value="3">Three</option> -->
+                                </select>
+                            </div>
+
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Gravity</span>
+                                </div>
+                                <input id="gravityInputVal" type="number" min="0" aria-label="gravity" value="1" class="form-control">
+                                <div class='input-group-append'>
+                                    <button type="button" class="btn input-group-text btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" id="gravityOptions">
+                                        <a class="dropdown-item" href="#">Earth</a>
+                                        <a class="dropdown-item" href="#">Mars</a>
+                                        <a class="dropdown-item" href="#">Alien</a>
+                                        <div role="separator" class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Moon</a>
+                                        <a class="dropdown-item" href="#">Titan</a>
+                                        <a class="dropdown-item" href="#">Europa</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h5 class="card-title">Cargo Space</h5>
+                            <div class="input-group">
+                                <span id="cargoCheckboxLabel" class="form-control">
+                                    Fill my cargo containers (with Platinum)
+                                </span>
+                                <div class="input-group-append">
+                                    <span id="cargoCheckboxSpan">
+                                        <!-- <input class="form-control" type="checkbox" aria-label="Checkbox for following text input"> -->
+                                        <input type="checkbox" id="cargoCheckbox">
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h6 class="card-title cargoContainerElement">Cargo Container Count</h6>
+                            <div class="input-group cargoContainerElement">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Small Cargo Container</span>
+                                </div>
+                                <input id="smContainerInput" value="0" min="0" type="number" aria-label="ship-weight" class="form-control" checked="toggleCargoContainers">
+                            </div>
+                            <div class="input-group cargoContainerElement">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Medium Cargo Container</span>
+                                </div>
+                                <input id="medContainerInput" value="0" min="0" type="number" aria-label="ship-weight" class="form-control">
+                            </div>
+                            <div class="input-group cargoContainerElement">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Large Cargo Container</span>
+                                </div>
+                                <input id="lgContainerInput" value="0" min="0" type="number" aria-label="ship-weight" class="form-control">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!--card start-->
+
+
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Ship Thruster Requirements</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <p>
+                                Your ship needs <span id="calculatedNewts" style="font-weight:bold;">1000 Newtons</span>
+                                of thrust to fight gravity.
+                            <br>
+                            Note: This does not take into account the weight of the thruster.</p>
+                            <ul class="list-group list-group-flush" id="requirementThrusterList">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3" style="background-color: #f5f5f5;">
+        <div class="container text-center text-muted">
+            Made with &#x2764 by 343N
+        </div>
+    </footer>
+
+    <script src="values.js"></script>
+    <script src="index.js"></script>
+
+    <!--card end-->
+
+
+</body>
+
+</html>
