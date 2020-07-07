@@ -9,6 +9,12 @@ const gravityOptions = {
     "triton": 0.25
 }
 
+const containerMultiplierOptions = {
+    "realistic": 1,
+    "x3": 3,
+    "x5": 5,
+    "x10": 10
+}
 
 // weight in KG
 // thrust in newtons
@@ -27,7 +33,7 @@ const smallShipThrusters = {
     smallIon: {
         name: "Ion Thruster",
         weight: 121,
-        thrust: 172800,
+        thrust: 14400,
         power: 200,
         fuel: null,
         imagefile: 'ion_thruster.png'

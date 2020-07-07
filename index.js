@@ -5,10 +5,12 @@ var cargoContainersEnabled = true
 
 function initInputHandlers() {
     $('#gravityOptions').children('a').click(gravitySelectEvent);
+    $('#containerMultiplierOptions').children('a').click(containerMulSelectEvent);
     $('#shipSizeSelect').change(shipSizeListener);
     // $('#shipSizeSelect').change(updateInput);
     $('#weightInputVal').on('input', updateOutput);
     $('#gravityInputVal').on('input', updateOutput);
+    $('#containerInputVal').on('input', updateOutput);
 
     $('#lgContainerInput').on('input', updateOutput)
     $('#medContainerInput').on('input', updateOutput)
@@ -44,6 +46,12 @@ function gravitySelectEvent(event) {
     updateOutput()
 }
 
+function containerMulSelectEvent(event) {
+    var option = containerMultiplierOptions[event.currentTarget.innerHTML.toLowerCase()]
+    if (option) $('#containerInputVal').val(option)
+    updateOutput()
+}
+
 function getShipNewtons() {
     var shipWeight = Number(getShipWeight())
     var shipCargoWeight = getCargoWeight()
@@ -66,7 +74,7 @@ function getCargoWeight() {
         weight += count.large * largeShipCargo.large.size
     }
 
-    return weight * platinumWeight
+    return weight * platinumWeight * count.multiplier
 }
 
 
@@ -102,11 +110,37 @@ function updateThrusterList(){
     let thrusterList = (isSmallShip()) ? smallShipThrusters : largeShipThrusters
     for (var key in thrusterList){
         let thruster = thrusterList[key]
-        let count = Math.ceil(getShipNewtons() / thruster.thrust)
-        $(`#${key}Amnt`).html(`${count} (${parseNewtons(count * thruster.thrust)})`);
+        let count = 0
+        let shipForce = getShipNewtons()
+        let thrusterForce = 0
+        // let thrusterWeight = thruster.weight
+        // let thrusterPower = thruster.power
+        let initialGap = shipForce - thrusterForce
+        let isPossible = true;
+        while (thrusterForce < shipForce){
+            let newCount = Math.ceil((shipForce - thrusterForce) / thruster.thrust)
+            thrusterForce += newCount * thruster.thrust 
+            let newThrusterWeightTotal = getNewtonsFromWeight(thruster.weight * newCount)
+            shipForce += newThrusterWeightTotal
+            count += newCount            
+            // alert("Hello!")
+            // sleep(2000)
+            let newGap = shipForce - thrusterForce
+            if (newGap > initialGap) isPossible = false
+            if (!isPossible) break;
+        }
+        let s = (isPossible) ? `${count} (${parseNewtons(thrusterForce)})` : 'N/A'
+        $(`#${key}Amnt`).html(s);
     }
 }
+
+function getNewtonsFromWeight(weight){
+    return (G * getGravity()) * weight
+}
     
+function getCargoContainerMultiplier(){
+    return $('#containerInputVal').val()
+}
 
 
 function getInputValues() {
@@ -115,9 +149,10 @@ function getInputValues() {
         gravity: getGravity(),
         size: getShipSize(),
         cargo: {
-            large: $('#lgContainerInput').val(),
-            medium: $('#medContainerInput').val(),
-            small: $('#smContainerInput').val(),
+            large: Number($('#lgContainerInput').val()),
+            medium: Number($('#medContainerInput').val()),
+            small: Number($('#smContainerInput').val()),
+            multiplier: Number($('#containerInputVal').val())
         }
     }
 }
@@ -126,21 +161,24 @@ function toggleCargoContainers() {
     cargoContainersEnabled = !cargoContainersEnabled
     $($('.cargoContainerElement')[0]).toggle();
     $($('.cargoContainerElement')[1]).toggle();
+    $($('.cargoContainerElement')[2]).toggle();
+    // $($('.cargoContainerElement')[2]).toggle();
     if (isSmallShip()) toggleMediumCargoContainer()
-    $($('.cargoContainerElement')[3]).toggle();
+    $($('.cargoContainerElement')[4]).toggle();
     updateOutput()
 }
 
+let mediumCargoContainer = `$('.cargoContainerElement')[3]`
 function toggleMediumCargoContainer() {
-    $($('.cargoContainerElement')[2]).toggle();
+    $($('.cargoContainerElement')[3]).toggle();
 }
 
 function showMediumCargoContainer() {
-    $($('.cargoContainerElement')[2]).css('display', 'flex');
+    $($('.cargoContainerElement')[3]).css('display', 'flex');
 }
 
 function hideMediumCargoContainer() {
-    $($('.cargoContainerElement')[2]).css('display', 'none');
+    $($('.cargoContainerElement')[3]).css('display', 'none');
 }
 
 for (var e of $('span.input-group-text'))

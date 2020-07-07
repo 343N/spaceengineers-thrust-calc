@@ -4,6 +4,9 @@
 <head>
     <!-- Refresh on change -->
     <script type="text/javascript" src="http://livejs.com/live.js"></script>
+  
+    <!-- COOKIES 🍪🍪🍪🍪🍪 -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
 
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -28,6 +31,7 @@
     <main role="main" class="flex-shrink-0">
         <div class="container">
             <div class="row">
+                <!-- input card -->
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-header">
@@ -38,7 +42,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Ship Weight (kg)</span>
                                 </div>
-                                <input id="weightInputVal" value="1" min="0" type="number" aria-label="ship-weight" class="form-control">
+                                <input id="weightInputVal" value="15000" min="0" type="number" aria-label="ship-weight" class="form-control">
                             </div>
 
                             <div class="input-group" id="shipSizeInputGroup">
@@ -86,6 +90,24 @@
                                     </span>
                                 </div>
                             </div>
+                            <div class="input-group cargoContainerElement">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Cargo Space Multiplier</span>
+                                </div>
+                                <input id="containerInputVal" type="number" min="0" aria-label="gravity" value="1" class="form-control">
+                                <div class='input-group-append'>
+                                    <button type="button" class="btn input-group-text btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <span class="sr-only">Toggle Dropdown</span>
+                                    </button>
+                                    <div class="dropdown-menu" id="containerMultiplierOptions">
+                                        <a class="dropdown-item" href="#">Realistic</a>
+                                        <a class="dropdown-item" href="#">x3</a>
+                                        <a class="dropdown-item" href="#">x5</a>
+                                        <a class="dropdown-item" href="#">x10</a>
+                                    </div>
+                                </div>
+                            </div>
+
 
                             <h6 class="card-title cargoContainerElement">Cargo Container Count</h6>
                             <div class="input-group cargoContainerElement">
@@ -110,9 +132,10 @@
                         </div>
                     </div>
                 </div>
-                <!--card start-->
+                <!-- input card -->
+                
 
-
+                <!-- output card -->
                 <div class="col-sm-6">
                     <div class="card">
                         <div class="card-header">
@@ -123,13 +146,41 @@
                             <p>
                                 Your ship needs <span id="calculatedNewts" style="font-weight:bold;">1000 Newtons</span>
                                 of thrust to fight gravity.
-                            <br>
-                            Note: This does not take into account the weight of the thruster.</p>
-                            <ul class="list-group list-group-flush" id="requirementThrusterList">
+                                <br>
+                                To maintain this weight, you will need any of the following:
+                                <br>
+                                <ul class="list-group list-group-flush" id="requirementThrusterList">
+                                    <h4 class="card-title" style="margin-left: 1rem; margin-right: 1rem;">
+                                        Thruster <span class="float-right">Count</span>
+                                    </h3> 
                             </ul>
                         </div>
                     </div>
                 </div>
+                <!-- output card -->
+
+
+                <!-- changelog -->
+                <div class="modal fade" id="changelogModal" tabindex="-1" role="dialog" aria-labelledby="titleLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="titleLabel">Changelog</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div id="changelogModalBody" class="modal-body">
+                          
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                <!-- changelog -->
+
             </div>
         </div>
     </main>
@@ -140,6 +191,7 @@
         </div>
     </footer>
 
+    <script src="changelog.js"></script>
     <script src="values.js"></script>
     <script src="index.js"></script>
 
