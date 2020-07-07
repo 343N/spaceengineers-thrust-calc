@@ -26,7 +26,7 @@ function addChanges() {
 
     let modalBodyHTML = ''
     for (let change of changes){
-        let title = `<h4>Changes for ${changes[changes.length - 1].date}</h4>`
+        let title = `<h4>- ${changes[changes.length - 1].date}</h4>`
     
         let changesList = ''
         for (let item of change.changes)
