@@ -1,6 +1,7 @@
 const G = 9.80665
 //plat weight per litre
 const platinumWeight = 21.27;
+const oreWeight = 1 / 0.37;
 var cargoContainersEnabled = true
 
 function initInputHandlers() {
@@ -74,7 +75,7 @@ function getCargoWeight() {
         weight += count.large * largeShipCargo.large.size
     }
 
-    return weight * platinumWeight * count.multiplier
+    return weight * oreWeight * count.multiplier
 }
 
 

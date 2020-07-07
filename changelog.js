@@ -1,10 +1,18 @@
-const changes = [{
-    date: '7/07/2020',
-    changes: [
-        `Ship Thruster requirements now take into account weight of thrusters and recursively calculate requirements.`,
-        `Added a Cargo Space Multiplier option.`
-    ],
-}]
+const changes = [
+    {
+        date: '7/07/2020 again',
+        changes: [
+            `Changed cargo container filler to ore (while I add more options), because who fills cargo with Platinum Ingots?`
+        ]
+    },
+    {
+        date: '7/07/2020',
+        changes: [
+            `Ship Thruster requirements now take into account weight of thrusters and recursively calculate requirements.`,
+            `Added a Cargo Space Multiplier option.`
+        ],
+    }
+]
 
 
 function showChanges() {
@@ -18,16 +26,16 @@ function showChanges() {
 
 }
 
-function clearVers(){
+function clearVers() {
     Cookies.set('lastSeen', '-1')
 }
 
 function addChanges() {
 
     let modalBodyHTML = ''
-    for (let change of changes){
-        let title = `<h4>- ${changes[changes.length - 1].date}</h4>`
-    
+    for (let change of changes) {
+        let title = `<h4>${change.date}</h4>`
+
         let changesList = ''
         for (let item of change.changes)
             changesList += `<li>${item}</li>`
