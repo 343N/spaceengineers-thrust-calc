@@ -12,6 +12,7 @@ function initInputHandlers() {
     $('#weightInputVal').on('input', updateOutput);
     $('#gravityInputVal').on('input', updateOutput);
     $('#containerInputVal').on('input', updateOutput);
+    $('#ThrustEffVal').on('input', updateOutput);
 
     $('#lgContainerInput').on('input', updateOutput)
     $('#medContainerInput').on('input', updateOutput)
@@ -41,6 +42,10 @@ function isSmallShip() {
     return (getShipSize() == 'smallShip')
 }
 
+function getThrustEfficiency() {
+    return $('#ThrustEffVal').val()
+}
+
 function gravitySelectEvent(event) {
     var option = gravityOptions[event.currentTarget.innerHTML.toLowerCase()]
     if (option) $('#gravityInputVal').val(option)
@@ -65,7 +70,6 @@ function getCargoWeight() {
     var weight = 0
 
     var count = getInputValues().cargo;
-    // console.log(isSmallShip())
     if (isSmallShip()) {
         weight += count.small * smallShipCargo.small.size
         weight += count.medium * smallShipCargo.medium.size
@@ -114,18 +118,15 @@ function updateThrusterList(){
         let count = 0
         let shipForce = getShipNewtons()
         let thrusterForce = 0
-        // let thrusterWeight = thruster.weight
-        // let thrusterPower = thruster.power
+        let thrustEff = getThrustEfficiency() / 100
         let initialGap = shipForce - thrusterForce
         let isPossible = true;
         while (thrusterForce < shipForce){
-            let newCount = Math.ceil((shipForce - thrusterForce) / thruster.thrust)
-            thrusterForce += newCount * thruster.thrust 
+            let newCount = Math.ceil((shipForce - thrusterForce) / (thruster.thrust * thrustEff))
+            thrusterForce += newCount * (thruster.thrust * thrustEff)
             let newThrusterWeightTotal = getNewtonsFromWeight(thruster.weight * newCount)
             shipForce += newThrusterWeightTotal
             count += newCount            
-            // alert("Hello!")
-            // sleep(2000)
             let newGap = shipForce - thrusterForce
             if (newGap > initialGap) isPossible = false
             if (!isPossible) break;
@@ -149,6 +150,7 @@ function getInputValues() {
         weight: getShipWeight(),
         gravity: getGravity(),
         size: getShipSize(),
+        thrustEff: getThrustEfficiency(),
         cargo: {
             large: Number($('#lgContainerInput').val()),
             medium: Number($('#medContainerInput').val()),
@@ -185,8 +187,6 @@ function hideMediumCargoContainer() {
 for (var e of $('span.input-group-text'))
     e.style.width = '12.5rem';
 // console.log(smallShipThrusters)
-
-    
 
 $('#cargoCheckboxLabel').addClass('input-group-text');
 $('#cargoCheckboxSpan').addClass('input-group-text');

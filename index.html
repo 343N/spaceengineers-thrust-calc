@@ -48,6 +48,7 @@
                             <h4 class="card-title">Ship Specifications</h3>
                         </div>
                         <div class="card-body">
+                            <!--Ship Weight-->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Ship Weight (kg)</span>
@@ -55,6 +56,7 @@
                                 <input id="weightInputVal" value="15000" min="0" type="number" aria-label="ship-weight" class="form-control">
                             </div>
 
+                            <!--Ship Size-->
                             <div class="input-group" id="shipSizeInputGroup">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Ship Size</span>
@@ -67,6 +69,7 @@
                                 </select>
                             </div>
 
+                            <!--Gravity-->
                             <div class="input-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text">Gravity</span>
@@ -86,6 +89,14 @@
                                         <a class="dropdown-item" href="#">Europa</a>
                                     </div>
                                 </div>
+                            </div>
+
+                            <!--Thruster Efficiency-->
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Thruster Efficiency (%)</span>
+                                </div>
+                                <input id="ThrustEffVal" value="100" max="100" min="0" type="number" aria-label="ship-weight" class="form-control">
                             </div>
 
                             <h5 class="card-title">Cargo Space</h5>
