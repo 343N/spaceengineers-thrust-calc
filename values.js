@@ -142,6 +142,9 @@ const smallShipCargo = {
     large: {
         size: 15625
     },
+    modular: {
+        size: 10000
+    },
 }
 
 const itemData = {
