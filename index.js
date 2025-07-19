@@ -14,16 +14,23 @@ function initInputHandlers() {
     $('#containerInputVal').on('input', updateOutput);
     $('#ThrustEffVal').on('input', updateOutput);
 
+    $('#smContainerInput').on('input', updateOutput)
     $('#lgContainerInput').on('input', updateOutput)
     $('#medContainerInput').on('input', updateOutput)
-    $('#smContainerInput').on('input', updateOutput)
+    $('#modContainerInput').on('input', updateOutput)
 }
 
 function shipSizeListener() {
     // cargoContainersEnabled = !cargoContainersEnabled
-    if (isSmallShip() && cargoContainersEnabled) showMediumCargoContainer()
-    if (!isSmallShip()) hideMediumCargoContainer()
-    updateOutput()
+    if (isSmallShip() && cargoContainersEnabled) {
+        showMediumCargoContainer();
+        showModularCargoContainer();
+    };
+    if (!isSmallShip()) {
+        hideMediumCargoContainer();
+        hideModularCargoContainer();
+    };
+    updateOutput();
 }
 
 function getShipWeight() {
@@ -74,6 +81,7 @@ function getCargoWeight() {
         weight += count.small * smallShipCargo.small.size
         weight += count.medium * smallShipCargo.medium.size
         weight += count.large * smallShipCargo.large.size
+        weight += count.modular * smallShipCargo.modular.size
     } else {
         weight += count.small * largeShipCargo.small.size
         weight += count.large * largeShipCargo.large.size
@@ -155,6 +163,7 @@ function getInputValues() {
             large: Number($('#lgContainerInput').val()),
             medium: Number($('#medContainerInput').val()),
             small: Number($('#smContainerInput').val()),
+            modular: Number($('#modContainerInput').val()),
             multiplier: Number($('#containerInputVal').val())
         }
     }
@@ -166,23 +175,41 @@ function toggleCargoContainers() {
     $($('.cargoContainerElement')[1]).toggle();
     $($('.cargoContainerElement')[2]).toggle();
     // $($('.cargoContainerElement')[2]).toggle();
-    if (isSmallShip()) toggleMediumCargoContainer()
+    if (isSmallShip()) {
+        toggleMediumCargoContainer();
+        toggleModularCargoContainer();
+    };
     $($('.cargoContainerElement')[4]).toggle();
     updateOutput()
 }
+
 
 let mediumCargoContainer = `$('.cargoContainerElement')[3]`
 function toggleMediumCargoContainer() {
     $($('.cargoContainerElement')[3]).toggle();
 }
+function toggleModularCargoContainer() {
+    $($('.cargoContainerElement')[5]).toggle();
+}
 
 function showMediumCargoContainer() {
     $($('.cargoContainerElement')[3]).css('display', 'flex');
+    console.log($('.cargoContainerElement'));
 }
 
 function hideMediumCargoContainer() {
     $($('.cargoContainerElement')[3]).css('display', 'none');
 }
+
+function showModularCargoContainer() {
+    $($('.cargoContainerElement')[5]).css('display', 'flex');
+}
+
+function hideModularCargoContainer() {
+    $($('.cargoContainerElement')[5]).css('display', 'none');
+    
+}
+
 
 for (var e of $('span.input-group-text'))
     e.style.width = '12.5rem';
