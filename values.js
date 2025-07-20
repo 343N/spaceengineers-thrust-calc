@@ -27,56 +27,49 @@ const smallShipThrusters = {
         weight: 721,
         thrust: 172800,
         power: 2400,
-        fuel: null,
-        imagefile: 'large_ion_thruster.png'
+        fuel: null
     },
     smallIon: {
         name: "Ion Thruster",
         weight: 121,
         thrust: 14400,
         power: 200,
-        fuel: null,
-        imagefile: 'ion_thruster.png'
+        fuel: null
     },
     largeHydrogen: {
         name: "Large Hydrogen Thruster",
         weight: 1222,
         thrust: 480000,
         power: 600,
-        fuel: 386,
-        imagefile: 'large_hydrogen_thruster.png'
+        fuel: 386
     },
     smallHydrogen: {
         name: "Hydrogen Thruster",
         weight: 334,
         thrust: 98400,
         power: 125,
-        fuel: 80,
-        imagefile: 'hydrogen_thruster.png'
+        fuel: 80
     },
     largeAtmospheric: {
         name: "Large Atmospheric Thruster",
         weight: 2948,
         thrust: 576000,
         power: 2400,
-        fuel: null,
-        imagefile: 'large_atmospheric_thruster.png'
+        fuel: null
     },
     smallAtmospheric: {
         name: "Atmospheric Thruster",
         weight: 699,
         thrust: 96000,
         power: 600,
-        fuel: null,
-        imagefile: 'atmospheric_thruster.png'
+        fuel: null
     },
     prototech: {
         name: "Prototech Thruster",
         weight: 1521,
         thrust: 561600,
         power: 4800,
-        fuel: null,
-        imagefile: 'atmospheric_thruster.png'
+        fuel: null
     },
 }
 
@@ -87,56 +80,49 @@ const largeShipThrusters = {
         weight: 43200,
         thrust: 4320000,
         power: 33600,
-        fuel: null,
-        imagefile: 'large_ion_thruster.png'
+        fuel: null
     },
     smallIon: {
         name: "Ion Thruster",
         weight: 4380,
         thrust: 345600,
         power: 3360,
-        fuel: null,
-        imagefile: 'ion_thruster.png'
+        fuel: null
     },
     largeHydrogen: {
         name: "Large Hydrogen Thruster",
         weight: 6940,
         thrust: 7200000,
         power: 7500,
-        fuel: 4820,
-        imagefile: 'large_hydrogen_thruster.png'
+        fuel: 4820
     },
     smallHydrogen: {
         name: "Hydrogen Thruster",
         weight: 1420,
         thrust: 1080000,
         power: 1250,
-        fuel: 803,
-        imagefile: 'hydrogen_thruster.png'
+        fuel: 803
     },
     largeAtmospheric: {
         name: "Large Atmospheric Thruster",
         weight: 32970,
         thrust: 6480000,
         power: 16800,
-        fuel: null,
-        imagefile: 'large_atmospheric_thruster.png'
+        fuel: null
     },
     smallAtmospheric: {
         name: "Atmospheric Thruster",
         weight: 4000,
         thrust: 648000,
         power: 2400,
-        fuel: null,
-        imagefile: 'atmospheric_thruster.png'
+        fuel: null
     },
     prototech: {
         name: "Prototech Thruster",
         weight: 38850,
         thrust: 14040000,
         power: 67200,
-        fuel: null,
-        imagefile: 'atmospheric_thruster.png'
+        fuel: null
     }
 }
 
