@@ -70,6 +70,14 @@ const smallShipThrusters = {
         fuel: null,
         imagefile: 'atmospheric_thruster.png'
     },
+    prototech: {
+        name: "Prototech Thruster",
+        weight: 1521,
+        thrust: 561600,
+        power: 4800,
+        fuel: null,
+        imagefile: 'atmospheric_thruster.png'
+    },
 }
 
 
@@ -122,6 +130,14 @@ const largeShipThrusters = {
         fuel: null,
         imagefile: 'atmospheric_thruster.png'
     },
+    prototech: {
+        name: "Prototech Thruster",
+        weight: 38850,
+        thrust: 14040000,
+        power: 67200,
+        fuel: null,
+        imagefile: 'atmospheric_thruster.png'
+    }
 }
 
 const largeShipCargo = {
