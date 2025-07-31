@@ -1,5 +1,17 @@
 const changes = [
     {
+        date: '7/20/2025',
+        changes: [
+            `Added prototech Thruster information.`
+        ]
+    },
+    {
+        date: '7/19/2025',
+        changes: [
+            `Added Modular Cargo information.`
+        ]
+    },
+    {
         date: '7/07/2020 again',
         changes: [
             `Changed cargo container filler to ore (while I add more options), because who fills cargo with Platinum Ingots?`
