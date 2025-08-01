@@ -1,12 +1,13 @@
+// this should be in DD/MM/YYYY!!! poggers
 const changes = [
     {
-        date: '7/20/2025',
+        date: '20/07/2025',
         changes: [
             `Added prototech Thruster information.`
         ]
     },
     {
-        date: '7/19/2025',
+        date: '19/07/2025',
         changes: [
             `Added Modular Cargo information.`
         ]
