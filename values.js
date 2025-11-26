@@ -64,6 +64,20 @@ const smallShipThrusters = {
         power: 600,
         fuel: null
     },
+    flatmo: {
+        name: "Flatmo",
+        weight: 303,
+        thrust: 32000,
+        power: 200,
+        fuel: null
+    },
+    largeFlatmo: {
+        name: "Large Flatmo",
+        weight: 1060,
+        thrust: 230000,
+        power: 1000,
+        fuel: null
+    },
     prototech: {
         name: "Prototech Thruster",
         weight: 1521,
@@ -117,13 +131,27 @@ const largeShipThrusters = {
         power: 2400,
         fuel: null
     },
+    flatmo: {
+        name: "Flatmo",
+        weight: 1273,
+        thrust: 200000,
+        power: 800,
+        fuel: null
+    },
+    largeFlatmo: {
+        name: "Large Flatmo",
+        weight: 12190,
+        thrust: 2600000,
+        power: 6700,
+        fuel: null
+    },
     prototech: {
         name: "Prototech Thruster",
         weight: 38850,
         thrust: 14040000,
         power: 67200,
         fuel: null
-    }
+    },
 }
 
 const largeShipCargo = {
